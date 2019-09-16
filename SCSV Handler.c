@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <locale.h>
 #include <math.h>
 #include <stdio.h>
@@ -104,10 +105,12 @@ int main() {
 			char lenMaxId[12];
 			sprintf(lenMaxId, "%d", lsLength(students));
 
-			wprintf(L"\n  %*s | %-*s | %-*s | %4s", strlen(lenMaxId), "ID", LEN_NAME, "NOME", LEN_SUBJECT, "DISCIPLINA", "NOTA");
+			int lenToUse = 2; if (strlen(lenMaxId) > 2) lenToUse = strlen(lenMaxId);
+
+			wprintf(L"\n  %*s | %-*s | %-*s | %4s", lenToUse, "ID", LEN_NAME, "NOME", LEN_SUBJECT, "DISCIPLINA", "NOTA");
 			
 			wprintf(L"\n -");
-			for (int i = 0; i < strlen(lenMaxId); i++) wprintf(L"-");
+			for (int i = 0; i < lenToUse; i++) wprintf(L"-");
 			wprintf(L"-+-");
 			for (int i = 0; i < LEN_NAME; i++) wprintf(L"-");
 			wprintf(L"-+-");
@@ -119,7 +122,7 @@ int main() {
 			while (node != NULL) {
 				wprintf(
 					L"  %*d | %-15ls | %-30ls | %4.1f\n",
-					strlen(lenMaxId),
+					lenToUse,
 					lsGetNodeId(node),
 					stGetName(lsGetStudent(students, node)),
 					stGetSubject(lsGetStudent(students, node)),
