@@ -29,6 +29,8 @@ int lsDelLast(List *list);
 
 int lsDelById(List *list, int id);
 
+int lsGetNodeId(Node *node);
+
 Node *lsGetPrevNode(Node *node);
 
 Node *lsGetNextNode(Node *node);

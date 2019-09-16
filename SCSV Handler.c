@@ -101,14 +101,26 @@ int main() {
 				continue;
 			}
 
-			wprintf(L"\n  %-*s | %-*s | %4s", LEN_NAME, "NOME", LEN_SUBJECT, "DISCIPLINA", "NOTA");
-			wprintf(L"\n -"); for (int i = 0; i < LEN_NAME; i++) wprintf(L"-"); wprintf(L"-+-"); for (int i = 0; i < LEN_SUBJECT; i++) wprintf(L"-"); wprintf(L"-+------\n");
+			char lenMaxId[12];
+			sprintf(lenMaxId, "%d", lsLength(students));
+
+			wprintf(L"\n  %*s | %-*s | %-*s | %4s", strlen(lenMaxId), "ID", LEN_NAME, "NOME", LEN_SUBJECT, "DISCIPLINA", "NOTA");
+			
+			wprintf(L"\n -");
+			for (int i = 0; i < strlen(lenMaxId); i++) wprintf(L"-");
+			wprintf(L"-+-");
+			for (int i = 0; i < LEN_NAME; i++) wprintf(L"-");
+			wprintf(L"-+-");
+			for (int i = 0; i < LEN_SUBJECT; i++) wprintf(L"-");
+			wprintf(L"-+------\n");
 
 			Node *node = *students;
 
 			while (node != NULL) {
 				wprintf(
-					L"  %-15ls | %-30ls | %4.1f\n",
+					L"  %*d | %-15ls | %-30ls | %4.1f\n",
+					strlen(lenMaxId),
+					lsGetNodeId(node),
 					stGetName(lsGetStudent(students, node)),
 					stGetSubject(lsGetStudent(students, node)),
 					stGetGrade(lsGetStudent(students, node))
@@ -118,6 +130,8 @@ int main() {
 			}
 
 			free(node);
+
+			wprintf(L"\n  Total de registros: %d\n", lsLength(students));
 
 			waitKey();
 		} else if (opt == 3) {
@@ -205,6 +219,8 @@ int main() {
 
 			free(node);
 
+			wprintf(L"\n  Total de estudantes: %d\n", pos);
+
 			waitKey();
 		} else if (opt == 4) {
 			clear();
@@ -291,6 +307,8 @@ int main() {
 			wprintf(L"  %-*ls | %5.2f\n", LEN_SUBJECT, L"Total geral", totalAvg);
 
 			free(node);
+
+			wprintf(L"\n  Total de disciplinas: %d\n", pos);
 
 			waitKey();
 		} else if (opt == 5) {

@@ -53,7 +53,8 @@ int lsAddBegin(List *list, Student *student) {
 
 	if (node == NULL)
 		return 0;
-
+	
+	node->id = lsLength(list) + 1;
 	node->student = student;
 	node->prev = NULL;
 	node->next = *list;
@@ -77,6 +78,7 @@ int lsAddEnd(List *list, Student *student) {
 	if (node == NULL)
 		return 0;
 
+	node->id = lsLength(list) + 1;
 	node->student = student;
 	node->next = NULL;
 
@@ -107,6 +109,7 @@ int lsAddSorted(List *list, Student *student) {
 	if (node == NULL)
 		return 0;
 
+	node->id = lsLength(list) + 1;
 	node->student = student;
 
 	if (lsIsEmpty(list)) {
@@ -222,6 +225,15 @@ int lsDelById(List *list, int id) {
 	free(node);
 
 	return 1;
+}
+
+
+
+int lsGetNodeId(Node *node) {
+	if (node == NULL)
+		return 0;
+
+	return node->id;
 }
 
 
