@@ -1,4 +1,3 @@
-#include <limits.h>
 #include <locale.h>
 #include <math.h>
 #include <stdio.h>
@@ -218,7 +217,7 @@ int main() {
 			totalAvg /= pos;
 
 			wprintf(L" -"); for (int i = 0; i < LEN_NAME; i++) wprintf(L"-"); wprintf(L"-+-------\n");
-			wprintf(L"  %-*ls | %5.2f\n", LEN_NAME, L"Total geral", totalAvg);
+			wprintf(L"  %-*ls | %5.2f\n", LEN_NAME, L"Média geral", totalAvg);
 
 			free(node);
 
@@ -307,7 +306,7 @@ int main() {
 			totalAvg /= pos;
 
 			wprintf(L" -"); for (int i = 0; i < LEN_SUBJECT; i++) wprintf(L"-"); wprintf(L"-+-------\n");
-			wprintf(L"  %-*ls | %5.2f\n", LEN_SUBJECT, L"Total geral", totalAvg);
+			wprintf(L"  %-*ls | %5.2f\n", LEN_SUBJECT, L"Média geral", totalAvg);
 
 			free(node);
 
